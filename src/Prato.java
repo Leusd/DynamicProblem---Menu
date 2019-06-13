@@ -1,5 +1,5 @@
 public class Prato {
-    private double lucro;
+    private int lucro;
     private int custo;
     private int id;
     public int getId() {
@@ -25,6 +25,9 @@ public class Prato {
             return this.lucro/2;
         }else
             return 0;
+    }
+    public int getLucro() {
+        return  lucro;
     }
 
 
