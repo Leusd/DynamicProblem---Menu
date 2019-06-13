@@ -1,11 +1,17 @@
 public class Prato {
     private double lucro;
     private int custo;
+    private int id;
+    public int getId() {
+        return id;
+    }
 
-    public Prato(int custo, int lucro) {
+    public Prato(int id, int custo, int lucro) {
+        this.id = id;
         this.custo = custo;
         this.lucro = lucro;
     }
+
 
     public int getCusto() {
         return custo;
@@ -20,4 +26,6 @@ public class Prato {
         }else
             return 0;
     }
+
+
 }
