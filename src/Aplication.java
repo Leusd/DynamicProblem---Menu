@@ -45,7 +45,7 @@ public class Aplication {
                 Tabela[0][j].lucro = Tabela[0][j - custo].lucro + itens.get(0).getLucro(Tabela[0][j - custo].getRepeat(itens.get(0)));
                 Tabela[0][j].pratos = new ArrayList<Prato>(Tabela[0][j - custo].pratos);
 
-                Tabela[0][j].pratos.add(itens.get(0));
+                Tabela[0][j].addPrato(itens.get(0));
             }
         }
 
@@ -58,13 +58,22 @@ public class Aplication {
                     Item itemTabela = Tabela[i][j - custo];
                     int numeroRepPrato = Tabela[i][j - custo].getRepeat(itens.get(i));
                     double lucroPrato = itens.get(i).getLucro(numeroRepPrato);
-                    double x =  Math.max(Tabela[i - 1][j].lucro, Tabela[i][j - custo].lucro + lucroPrato);
+                    double custoTotal = Tabela[i][j - custo].getCustoPratos() + itens.get(i).getCusto();
+                    double x = 0;
+
+                    if(custoTotal <= orcamento ){
+                        x =  Math.max(Tabela[i - 1][j].lucro, Tabela[i][j - custo].lucro + lucroPrato);
+
+                    }else{
+                        x =  Math.max(Tabela[i - 1][j].lucro, Tabela[i][j - custo].lucro);
+                    }
+
                     Tabela[i][j].lucro = x;
                     Tabela[i][j].pratos = new ArrayList<Prato>( Tabela[i][j - custo].pratos);
 
                     if(x != Tabela[i][j - custo].lucro){
 
-                        Tabela[i][j].pratos.add(itens.get(i));
+                        Tabela[i][j].addPrato(itens.get(i));
                     }
                    }
 
@@ -72,6 +81,11 @@ public class Aplication {
         }
 
         printTable(Tabela, itens);
+        ArrayList <Prato> cardapio = Tabela[itens.size() -1][orcamento -1].pratos;
+        for(Prato p : cardapio){
+            System.out.print(p.getId()+ "\t");
+        }
+
 
     }
 
@@ -80,7 +94,6 @@ public class Aplication {
             for (int j = 0; j < Tabela[1].length; j++) {
                 Tabela[i][j] = new Item();
             }
-
         }
     }
     static void printTable(Item[][] Tabela, ArrayList<Prato> pratos) {

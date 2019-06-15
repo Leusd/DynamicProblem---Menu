@@ -18,10 +18,12 @@ public class Item {
                 return Double.compare(p1.getLucro(0), p2.getLucro(0));
             }
         });
-        if(pratos.size()>= 2){
+        if(pratos.size()>= 3){
             pratos.remove(0);
+
         }
-        pratos.add(new Prato(p.getId(), p.getCusto(), p.getLucro()));
+        pratos.add(p);
+
     }
     public int getCustoPratos(){
         int custo = 0;

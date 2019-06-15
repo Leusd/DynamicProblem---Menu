@@ -1,5 +1,5 @@
 public class Prato {
-    private int lucro;
+    private double lucro;
     private int custo;
     private int id;
     public int getId() {
@@ -26,7 +26,7 @@ public class Prato {
         }else
             return 0;
     }
-    public int getLucro() {
+    public double getLucro() {
         return  lucro;
     }
 
